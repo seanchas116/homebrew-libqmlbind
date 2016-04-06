@@ -13,6 +13,6 @@ class Qmlbind < Formula
       system "make"
     end
     prefix.install "qmlbind/include"
-    prefix.install Dir["qmlbind/lib*.dylib"]
+    (prefix/"lib").install Dir["qmlbind/lib*.dylib"]
   end
 end
