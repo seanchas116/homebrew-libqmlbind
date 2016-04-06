@@ -4,5 +4,5 @@
 
 ```
 > brew tap seanchas116/libqmlbind
-> brew install qmlbind
+> brew install libqmlbind
 ```
