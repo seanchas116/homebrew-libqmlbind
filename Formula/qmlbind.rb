@@ -15,4 +15,15 @@ class Qmlbind < Formula
     prefix.install "qmlbind/include"
     (prefix/"lib").install Dir["qmlbind/lib*.dylib"]
   end
+
+  test do
+    (testpath/"main.c").write <<-EOS
+      #include <qmlbind.h>
+      int main(int argc, char *argv[]) {
+        qmlbind_application *app = qmlbind_application_new(argc, (const char* const *)argv);
+        qmlbind_application_release(app);
+      }
+    EOS
+    system "clang main.c -L/usr/local/opt/qmlbind/lib -I/usr/local/opt/qmlbind/include -lqmlbind"
+  end
 end
