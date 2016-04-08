@@ -1,19 +1,18 @@
 class Libqmlbind < Formula
   desc "A C library for creating QML bindings for other languages"
   homepage "https://github.com/seanchas116/libqmlbind"
-  url "https://github.com/seanchas116/libqmlbind/archive/v0.1.0.tar.gz"
-  sha256 "9ddc32a5726de5fe30f4dc14c434ce558dd18fa2b6512605b279f23bf188e268"
+  url "https://github.com/seanchas116/libqmlbind/archive/v0.2.0.tar.gz"
+  sha256 "0bcba6c6189770ca269394ca346c2fe33739f236378439b9f3d5d144341ed6a3"
   head "https://github.com/seanchas116/libqmlbind.git"
   keg_only "libqmlbind depends on Qt 5 which is keg only"
   depends_on "qt5"
 
   def install
     cd "qmlbind" do
-      system "qmake"
+      system "qmake INSTALL_PREFIX=#{prefix}"
       system "make"
+      system "make install"
     end
-    prefix.install "qmlbind/include"
-    (prefix/"lib").install Dir["qmlbind/lib*.dylib"]
   end
 
   test do
